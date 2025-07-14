@@ -31,24 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // }
     });
 
-
-    // ダミーのデータ更新 (WebSocket実装後に削除またはコメントアウト)
-    let dummyPlayerCount = 0;
-    let dummyUptimeSeconds = 0;
-    setInterval(() => {
-        // ★HTML要素が動的に読み込まれるため、常に要素の存在を確認する
-        const currentSection = document.querySelector('.content .active-section');
-        if (currentSection && currentSection.id === 'dashboard') {
-            dummyPlayerCount = Math.floor(Math.random() * 10) + 1;
-            dummyUptimeSeconds += 5;
-
-            handleWebSocketData({ type: 'playerCount', count: dummyPlayerCount });
-            handleWebSocketData({ type: 'serverUptime', seconds: dummyUptimeSeconds });
-            handleWebSocketData({ type: 'pingUpdate', ping: Math.floor(Math.random() * 100) + 20 });
-            handleWebSocketData({ type: 'serverStatus', status: 'online' });
-            handleWebSocketData({ type: 'motdUpdate', motd: `&aWelcome to Central Control Center!&r<br>&6Players Online: ${dummyPlayerCount}` });
-        }
-
         // プレイヤーリストとログはどのセクションでも更新される可能性があるので、要素の存在チェック
         const dummyPlayers = [
             { name: 'PlayerAlpha', uuid: 'aaaa-bbbb-cccc-dddd', isOp: true },
