@@ -1,0 +1,25 @@
+<h2>タイマー / ストップウォッチ</h2>
+<div class="timer-controls card">
+    <h3>タイマー (カウントダウン)</h3>
+    <div class="form-group">
+        <input type="number" id="timerMinutes" value="5" min="0" class="form-input small-input"> 分
+        <input type="number" id="timerSeconds" value="0" min="0" max="59" class="form-input small-input"> 秒
+        <input type="text" id="timerTitle" placeholder="BossBarタイトル (例: イベント開始まで)" class="form-input full-width">
+    </div>
+    <div class="btn-group">
+        <button id="startTimer" class="btn primary-btn">タイマー開始</button>
+        <button id="stopTimer" class="btn">タイマー停止</button>
+        <button id="resetTimer" class="btn">タイマーリセット</button>
+    </div>
+</div>
+<div class="stopwatch-controls card">
+    <h3>ストップウォッチ (カウントアップ)</h3>
+    <div class="form-group">
+        <input type="text" id="stopwatchTitle" placeholder="BossBarタイトル (例: イベント経過時間)" class="form-input full-width">
+    </div>
+    <div class="btn-group">
+        <button id="startStopwatch" class="btn primary-btn">ストップウォッチ開始</button>
+        <button id="pauseStopwatch" class="btn">一時停止</button>
+        <button id="resetStopwatch" class="btn">リセット</button>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<h2>コマンド/操作</h2>
+<div class="command-input-group form-group">
+    <select id="targetPlayerForCommand" class="form-select">
+        <option value="all">全プレイヤー</option>
+        </select>
+    <input type="text" id="commandInput" placeholder="/give @s diamond 64" class="form-input">
+    <button id="executeCommand" class="btn primary-btn">コマンド送信</button>
+</div>
+<h3>事前定義コマンド (選択プレイヤー対象)</h3>
+<div class="predefined-commands btn-group">
+    <button data-command="kick {player}" class="btn">キック</button>
+</div>
+<h3>ゲームモード変更 (全ユーザー対象)</h3>
+<div class="gamemode-buttons btn-group">
+    <button id="gamemodeCreative" class="btn">クリエイティブ</button>
+    <button id="gamemodeSurvival" class="btn">サバイバル</button>
+    <button id="gamemodeAdventure" class="btn">アドベンチャー</button>
+    <button id="gamemodeSpectator" class="btn">スペクテイター</button>
+</div>
+<h3>操作ロック (特定のプレイヤー対象)</h3>
+<div class="control-lock-buttons btn-group">
+    <button id="togglePlayerControls" class="btn danger-btn" data-locked="false">操作禁止</button>
+</div>
+<h3>システムメッセージ</h3>
+<div class="message-input-group form-group">
+    <textarea id="messageText" placeholder="全プレイヤーに送信するメッセージを入力..." class="form-textarea"></textarea>
+    <button id="sendMessage" class="btn primary-btn">メッセージ送信</button>
+</div>

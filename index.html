@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中央管理センター - Central Control Center</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/themes.css">       <link rel="stylesheet" href="css/components.css">    <link rel="stylesheet" href="css/sections.css">      </head>
+<body>
+    <header>
+        <h1>中央管理センター <small>(Central Control Center)</small></h1>
+        <div class="status-indicator" id="connectionStatus">未接続</div>
+    </header>
+
+    <div class="container">
+        <nav class="sidebar">
+            <ul>
+                <li class="active" data-section="dashboard">ダッシュボード</li>
+                <li data-section="player-monitoring">プレイヤー監視</li>
+                <li data-section="command-control">コマンド/操作</li>
+                <li data-section="user-management">ユーザー管理</li>
+                <li data-section="timer-stopwatch">タイマー/ストップウォッチ</li>
+                <li data-section="logs">ログ</li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <section id="dashboard" class="active-section"></section>
+            <section id="player-monitoring" class="hidden-section"></section>
+            <section id="command-control" class="hidden-section"></section>
+            <section id="user-management" class="hidden-section"></section>
+            <section id="timer-stopwatch" class="hidden-section"></section>
+            <section id="logs" class="hidden-section"></section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 SnakeWolf Central Control Center</p>
+    </footer>
+
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/websocket.js"></script>
+    <script type="module" src="js/ui-manager.js"></script>
+    <script type="module" src="js/data-display.js"></script>
+    <script type="module" src="js/command-sender.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+/* 全体レイアウト */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+    color: var(--primary-color);
+}
+
+header h1 small {
+    font-size: 16px;
+    color: var(--sub-text-color);
+    margin-left: 10px;
+}
+
+.status-indicator {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: var(--status-disconnected-color);
+    color: var(--text-color-light);
+    transition: background-color 0.3s ease;
+}
+
+/* メインコンテナ */
+.container {
+    display: flex;
+    flex-grow: 1; /* 残りの高さを占める */
+}
+
+/* サイドバー */
+.sidebar {
+    width: 250px;
+    padding: 20px 0;
+    border-right: 1px solid var(--border-color);
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    background-color: var(--sidebar-bg-color);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-left: 5px solid transparent;
+    color: var(--sidebar-item-color);
+}
+
+.sidebar ul li:hover {
+    background-color: var(--sidebar-hover-bg-color);
+}
+
+.sidebar ul li.active {
+    background-color: var(--sidebar-active-bg-color);
+    border-left-color: var(--primary-color);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* メインコンテンツ */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: var(--content-bg-color);
+    overflow-y: auto; /* コンテンツがはみ出た場合にスクロール */
+}
+
+.content h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: var(--header-bg-color);
+    color: var(--sub-text-color);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-top: 1px solid var(--border-color);
+}

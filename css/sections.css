@@ -1,0 +1,104 @@
+/* 各セクション固有のスタイル */
+
+/* ダッシュボード */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.dashboard-grid .status-card h3 {
+    margin-top: 0;
+    color: var(--sub-text-color);
+    font-size: 1.1em;
+}
+
+.dashboard-grid .status-card p {
+    font-size: 2.8em; /* MinecraftStatusPageに合わせて少し大きく */
+    font-weight: bold;
+    text-align: center;
+    color: var(--text-color);
+    margin: 10px 0;
+}
+
+.motd-card {
+    text-align: center;
+}
+.motd-card p {
+    font-size: 1.2em;
+    font-style: italic;
+    color: var(--text-color-light);
+}
+
+/* プレイヤー監視 */
+.monitoring-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.player-screen-card {
+    text-align: center;
+    padding: 10px;
+}
+
+.player-screen-card p {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.player-screenshot {
+    border-radius: 5px;
+    border: 1px solid var(--input-border-color);
+}
+
+.map-view {
+    text-align: center;
+    padding: 20px;
+}
+.map-view .map-note {
+    font-size: 0.9em;
+    color: var(--sub-text-color);
+    margin-top: 15px;
+}
+.full-width-image {
+    border-radius: 5px;
+    margin-top: 15px;
+    border: 1px solid var(--input-border-color);
+}
+
+/* コマンド/操作 */
+.command-input-group, .message-input-group {
+    /* form-groupで定義済み */
+    flex-wrap: nowrap; /* このグループ内では折り返さない */
+}
+
+/* ログ */
+.log-output {
+    background-color: var(--log-bg-color);
+    color: var(--log-text-color);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    height: 300px; /* 固定高さ */
+    overflow-y: scroll; /* スクロール可能に */
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 14px;
+    margin-bottom: 15px;
+    white-space: pre-wrap; /* 改行を保持 */
+}
+
+.log-output p {
+    margin: 0;
+    padding: 2px 0;
+}

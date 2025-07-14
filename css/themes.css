@@ -1,0 +1,36 @@
+/* テーマ変数 (Discord風ベース) */
+:root {
+    --main-bg-color: #2c2f33;        /* 全体の背景 */
+    --header-bg-color: #23272a;      /* ヘッダー・フッター・サイドバー背景 */
+    --sidebar-bg-color: #23272a;
+    --content-bg-color: #36393f;     /* メインコンテンツ背景 */
+    --card-bg-color: #2c2f33;        /* カード要素の背景 */
+    --border-color: #424549;         /* 区切り線、ボーダー */
+    --input-bg-color: #424549;       /* 入力フォームの背景 */
+    --input-border-color: #5a5f66;   /* 入力フォームのボーダー */
+
+    --primary-color: #7289da;        /* 主要な強調色 (Discordブランドカラー) */
+    --text-color: #ffffff;           /* 一般的なテキスト色 */
+    --text-color-light: #e0e0e0;     /* 少し明るいテキスト色 */
+    --sub-text-color: #99aab5;       /* サブテキスト、ラベル色 */
+    --log-bg-color: #1e1e1e;         /* ログエリアの背景 */
+    --log-text-color: #e0e0e0;       /* ログのテキスト色 */
+
+    /* ステータス関連の色 */
+    --status-online-color: #43b581;      /* オンライン (緑) */
+    --status-offline-color: #f04747;     /* オフライン (赤) */
+    --status-warning-color: #faa61a;     /* 警告 (オレンジ) */
+    --status-unknown-color: #99aab5;     /* 不明 (灰色) */
+}
+
+/* bodyにテーマ変数を適用 */
+body {
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+}
+
+/* ステータステキストの色 */
+.status-indicator-text.online { color: var(--status-online-color); }
+.status-indicator-text.offline { color: var(--status-offline-color); }
+.status-indicator-text.warning { color: var(--status-warning-color); }
+.status-indicator-text.unknown { color: var(--status-unknown-color); }

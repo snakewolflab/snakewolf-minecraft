@@ -1,0 +1,120 @@
+/* カードスタイル */
+.card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* ボタンの基本スタイル */
+.btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    font-size: 16px;
+    text-decoration: none; /* aタグの場合 */
+    display: inline-block; /* 適切なサイズ調整のため */
+}
+
+.btn:hover {
+    background-color: var(--primary-color); /* ホバー時の色を濃くする */
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* ボタンのバリエーション */
+.btn.primary-btn {
+    background-color: var(--primary-color);
+}
+.btn.success-btn {
+    background-color: var(--status-online-color);
+}
+.btn.danger-btn {
+    background-color: var(--status-offline-color);
+}
+.btn.warning-btn {
+    background-color: var(--status-warning-color);
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* フォーム要素の基本スタイル */
+.form-group {
+    display: flex;
+    flex-wrap: wrap; /* 小さい画面で折り返す */
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    flex-grow: 1; /* フォームグループ内で伸びる */
+}
+
+.form-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.form-select {
+    min-width: 150px;
+}
+
+.form-input.small-input {
+    flex-grow: 0;
+    width: 80px;
+}
+
+.form-input.full-width {
+    width: 100%;
+}
+
+/* テーブルスタイル */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+th {
+    background-color: var(--header-bg-color);
+    color: var(--sub-text-color);
+    font-weight: bold;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background-color: var(--sidebar-hover-bg-color); /* サイドバーのホバー色を流用 */
+}
