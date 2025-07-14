@@ -11,7 +11,7 @@ export function initWebSocket(statusElementId, onMessageCallback) {
 
 function connectWebSocket(onMessageCallback) {
     // 実際にはMinecraft ModのWebSocketサーバーのアドレスを指定
-    const wsUrl = `ws://localhost:8080/ccc`; // 例: Modが8080ポートで/cccエンドポイントを提供
+    const wsUrl = `ws://localhost:8887`; // 例: Modが8080ポートで/cccエンドポイントを提供
     ws = new WebSocket(wsUrl);
 
     ws.onopen = () => {
