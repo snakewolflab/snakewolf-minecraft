@@ -1,23 +1,34 @@
-<h2>ダッシュボード</h2>
-<div class="dashboard-grid">
-    <div class="card status-card">
-        <h3>接続中のプレイヤー数</h3>
-        <p id="playerCount">0</p>
-    </div>
-    <div class="card status-card">
-        <h3>サーバー稼働時間</h3>
-        <p id="uptime">0h 0m 0s</p>
-    </div>
-    <div class="card status-card">
-        <h3>サーバー状態</h3>
-        <p id="serverStatus" class="status-indicator-text offline">オフライン</p>
-    </div>
-    <div class="card status-card">
-        <h3>平均Ping</h3>
-        <p id="averagePing">N/A ms</p>
-    </div>
+<div class="dashboard-card">
+    <h3>サーバー状態</h3>
+    <p>ステータス: <span id="serverStatusText" class="status-indicator offline">オフライン</span></p>
+    <p>稼働時間: <span id="serverUptime">0秒</span></p>
 </div>
-<div class="motd-card card">
-    <h3>サーバーMOTD</h3>
-    <p id="serverMotd">サーバーの説明文がここに表示されます。</p>
+
+<div class="dashboard-card">
+    <h3>プレイヤー</h3>
+    <p>オンライン: <span id="playerCount">0</span> / <span id="maxPlayers">0</span></p>
 </div>
+
+<div class="dashboard-card">
+    <h3>メモリ使用量</h3>
+    <p><span id="memoryUsed">0</span> MB / <span id="memoryTotal">0</span> MB (<span id="memoryMax">0</span> MB Max)</p>
+</div>
+
+<div class="dashboard-card">
+    <h3>パフォーマンス</h3>
+    <p>TPS: <span id="serverTPS">0.0</span></p>
+    <p>CPU負荷: <span id="cpuLoad">0.0</span>%</p>
+</div>
+
+<style>
+    .status-indicator {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: bold;
+        color: white;
+    }
+    .status-indicator.online { background-color: #4CAF50; } /* 緑 */
+    .status-indicator.offline { background-color: #f44336; } /* 赤 */
+    /* ... その他のダッシュボードカードのスタイル ... */
+</style>
