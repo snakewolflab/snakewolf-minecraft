@@ -3,47 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中央管理センター - Central Control Center</title>
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/themes.css">       <link rel="stylesheet" href="css/components.css">    <link rel="stylesheet" href="css/sections.css">      </head>
+    <title>Minecraft Control Terminal</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #333; color: #eee; }
+        .container { max-width: 900px; margin: auto; padding: 20px; border: 1px solid #555; border-radius: 8px; background-color: #222; }
+        #connectionStatus {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: white;
+            background-color: #f44336; /* Offline */
+        }
+        #connectionStatus.online { background-color: #4CAF50; } /* Online */
+        #terminalOutput {
+            width: 100%;
+            height: 300px;
+            background-color: #000;
+            color: #0F0; /* Green text for terminal */
+            border: 1px solid #0F0;
+            overflow-y: scroll;
+            margin-top: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap; /* For pre-formatted text */
+        }
+        #commandInput {
+            width: calc(100% - 70px); /* Adjust button width */
+            padding: 8px;
+            margin-top: 5px;
+            background-color: #111;
+            color: #eee;
+            border: 1px solid #555;
+            box-sizing: border-box;
+        }
+        #sendCommandBtn {
+            width: 60px;
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #sendCommandBtn:hover { background-color: #0056b3; }
+
+        #screenshotSection { margin-top: 20px; border-top: 1px solid #555; padding-top: 20px; }
+        #screenshotImg {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #777;
+            margin-top: 10px;
+            display: block; /* Ensures it takes up full width */
+        }
+        #captureBtn {
+            padding: 8px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #captureBtn:hover { background-color: #218838; }
+
+    </style>
+</head>
 <body>
-    <header>
-        <h1>中央管理センター <small>(Central Control Center)</small></h1>
-        <div class="status-indicator" id="connectionStatus">未接続</div>
-    </header>
-
     <div class="container">
-        <nav class="sidebar">
-            <ul>
-                <li class="active" data-section="dashboard">ダッシュボード</li>
-                <li data-section="player-monitoring">プレイヤー監視</li>
-                <li data-section="command-control">コマンド/操作</li>
-                <li data-section="user-management">ユーザー管理</li>
-                <li data-section="timer-stopwatch">タイマー/ストップウォッチ</li>
-                <li data-section="logs">ログ</li>
-            </ul>
-        </nav>
+        <h1>Minecraft Control Terminal</h1>
+        <p>Status: <span id="connectionStatus">Disconnected</span></p>
 
-        <main class="content">
-            <section id="dashboard" class="active-section"></section>
-            <section id="player-monitoring" class="hidden-section"></section>
-            <section id="command-control" class="hidden-section"></section>
-            <section id="user-management" class="hidden-section"></section>
-            <section id="timer-stopwatch" class="hidden-section"></section>
-            <section id="logs" class="hidden-section"></section>
-        </main>
+        <h2>Terminal</h2>
+        <div id="terminalOutput"></div>
+        <input type="text" id="commandInput" placeholder="Enter command (e.g., say Hello!)">
+        <button id="sendCommandBtn">Send</button>
+
+        <section id="screenshotSection">
+            <h2>Player Screenshot</h2>
+            <button id="captureBtn">Capture Player Screen</button>
+            <img id="screenshotImg" src="" alt="Player Screenshot" style="display: none;">
+            <p id="screenshotMessage" style="color: #FFC107;"></p>
+        </section>
     </div>
 
-    <footer>
-        <p>&copy; 2025 SnakeWolf Central Control Center</p>
-    </footer>
+    <script type="module">
+        // Import modules
+        import { initWebSocket, sendMessage } from './js/websocket.js';
+        import { handleWebSocketData } from './js/terminal-display.js'; // 新しいJSファイル
+        // utils.js は terminal-display.js 内でインポートされることを想定
 
-    <script type="module" src="js/utils.js"></script>
-    <script type="module" src="js/websocket.js"></script>
-    <script type="module" src="js/ui-manager.js"></script>
-    <script type="module" src="js/data-display.js"></script>
-    <script type="module" src="js/command-sender.js"></script>
-    <script type="module" src="js/main.js"></script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const connectionStatusElement = document.getElementById('connectionStatus');
+            const commandInput = document.getElementById('commandInput');
+            const sendCommandBtn = document.getElementById('sendCommandBtn');
+            const captureBtn = document.getElementById('captureBtn');
+
+            // WebSocketの初期化
+            initWebSocket('connectionStatus', handleWebSocketData); // statusElementId と onMessageCallback
+
+            // コマンド送信ボタンのイベントリスナー
+            sendCommandBtn.addEventListener('click', () => {
+                const command = commandInput.value.trim();
+                if (command) {
+                    sendMessage({
+                        type: 'command',
+                        data: {
+                            command: command,
+                            sender: 'WebTerminal'
+                        }
+                    });
+                    commandInput.value = ''; // 入力フィールドをクリア
+                }
+            });
+
+            // Enterキーでのコマンド送信
+            commandInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendCommandBtn.click();
+                }
+            });
+
+            // スクリーンショットボタンのイベントリスナー
+            captureBtn.addEventListener('click', () => {
+                // ここでは仮にUUIDを指定しないか、ローカルプレイヤーのUUIDを渡す
+                // 実際にはドロップダウンなどでプレイヤーを選択できるようにするのが良い
+                const playerUuid = 'YOUR_LOCAL_PLAYER_UUID_HERE'; // 例: "12345678-ABCD-EFGH-IJKL-0123456789AB"
+                                                                // ここは動的に取得する方が良いが、まずはハードコードでテスト
+                                                                // または、Mod側で targetPlayerUUID が null の場合は
+                                                                // 接続元クライアントのプレイヤーUUIDを自動で使うようにする
+
+                document.getElementById('screenshotMessage').textContent = 'Capturing...';
+                sendMessage({
+                    type: 'screenshotRequest',
+                    data: {
+                        targetPlayerUUID: playerUuid // ローカルプレイヤーのUUIDを指定
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
