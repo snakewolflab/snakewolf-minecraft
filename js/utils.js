@@ -1,21 +1,16 @@
-// プロジェクト全体で利用される汎用的なヘルパー関数
-export function formatUptime(seconds) {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hours}h ${minutes}m ${secs}s`;
+// js/utils.js (簡略化し、今回の用途に合わせる)
+
+export function appendLogMessage(outputElement, message) {
+    if (outputElement) {
+        const span = document.createElement('span'); // pタグではなくspanにするか、pre-wrapと組み合わせる
+        const now = new Date();
+        const timeString = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+        span.textContent = `[${timeString}] ${message}\n`; // 改行を追加
+        outputElement.appendChild(span);
+        outputElement.scrollTop = outputElement.scrollHeight; // スクロールを一番下へ
+    }
 }
 
-export function createPlayerOption(playerName, value) {
-    const option = document.createElement('option');
-    option.value = value;
-    option.textContent = playerName;
-    return option;
-}
-
-export function appendLogMessage(logElement, message) {
-    const p = document.createElement('p');
-    p.textContent = message;
-    logElement.appendChild(p);
-    logElement.scrollTop = logElement.scrollHeight; // スクロールを一番下へ
-}
+// 他のフォーマット関数は、今回のターミナル用途では不要になった可能性があります
+// export function formatUptime(seconds) { ... }
+// export function createPlayerOption(name, value) { ... }
